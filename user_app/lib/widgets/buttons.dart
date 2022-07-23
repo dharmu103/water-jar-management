@@ -9,7 +9,7 @@ Widget btn1(
   text,
 ) =>
     Container(
-      height: Get.height * 0.08,
+      height: Get.height * 0.06,
       width: Get.width * 0.8,
       child: ElevatedButton(
         child: Text(text),
