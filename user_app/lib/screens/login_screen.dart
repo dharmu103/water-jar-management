@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:user_app/const/colors.dart';
+import 'package:user_app/getx/auth_controller.dart';
 import 'package:user_app/screens/otp_screen.dart';
 import 'package:user_app/widgets/buttons.dart';
 import 'package:user_app/widgets/textfields.dart';
@@ -12,6 +13,7 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final _controller = Get.put(AuthController());
     return Scaffold(
       body: Container(
         height: Get.height,
@@ -28,7 +30,10 @@ class LoginScreen extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               )),
           SizedBox(height: Get.height * 0.1),
-          phonefield(),
+          Form(
+            key: _controller.phoneFormKey,
+            child: phonefield(),
+          ),
           const Spacer(),
           Row(
             children: [
@@ -40,7 +45,11 @@ class LoginScreen extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 5),
-          btn1(() => Get.to(const OtpScreen()), 'Login'),
+          btn1(() {
+            if (_controller.phoneFormKey.currentState!.validate()) {
+              _controller.sendOtp();
+            }
+          }, 'Login'),
           SizedBox(height: Get.height * 0.05),
         ]),
       ),

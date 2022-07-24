@@ -3,11 +3,19 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:user_app/const/colors.dart';
+import 'package:user_app/getx/auth_controller.dart';
 
+final _controller = Get.put(AuthController());
 Widget phonefield() => SizedBox(
       height: Get.height * 0.08,
       width: Get.width * 0.8,
-      child: TextField(
+      child: TextFormField(
+        controller: _controller.phoneTextController,
+        validator: (value) => value!.isEmpty
+            ? 'Enter your phone number'
+            : value.length != 10
+                ? 'Enter correct phone number'
+                : null,
         style: GoogleFonts.poppins(
             fontWeight: FontWeight.bold,
             textStyle: const TextStyle(letterSpacing: 1.5)),
@@ -38,10 +46,12 @@ Widget otpfield(context) => SizedBox(
       height: Get.height * 0.08,
       width: Get.width * 0.8,
       child: PinCodeTextField(
+        controller: _controller.otpTextController,
         enablePinAutofill: true,
         appContext: context,
         length: 6,
-        onChanged: (value) => print(value),
+        onChanged: (value) =>
+            {value.length == 6 ? _controller.verifyOtp(value) : null},
         cursorColor: Colors.black,
         pinTheme: PinTheme(
           shape: PinCodeFieldShape.box,

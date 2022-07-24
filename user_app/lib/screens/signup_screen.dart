@@ -2,17 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:user_app/const/colors.dart';
-import 'package:user_app/widgets/buttons.dart';
-import 'package:user_app/widgets/textfields.dart';
+import 'package:user_app/screens/otp_screen.dart';
 
-import '../getx/auth_controller.dart';
+import '../widgets/buttons.dart';
 
-class OtpScreen extends StatelessWidget {
-  const OtpScreen({Key? key}) : super(key: key);
+class SignupScreen extends StatelessWidget {
+  const SignupScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final _controller = Get.put(AuthController());
     return Scaffold(
       body: Container(
         height: Get.height,
@@ -23,15 +21,12 @@ class OtpScreen extends StatelessWidget {
           SizedBox(
             height: Get.height * 0.1,
           ),
-          Text('Enter 6 digit OTP',
+          Text('Signup to your account',
               style: GoogleFonts.poppins(
                 fontSize: Get.width * 0.055,
                 fontWeight: FontWeight.bold,
               )),
           SizedBox(height: Get.height * 0.1),
-          otpfield(
-            context,
-          ),
           const Spacer(),
           Row(
             children: [
@@ -43,7 +38,7 @@ class OtpScreen extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 5),
-          btn1(null, 'Verify OTP'),
+          btn1(() => Get.to(const OtpScreen()), 'Signup'),
           SizedBox(height: Get.height * 0.05),
         ]),
       ),
