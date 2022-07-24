@@ -5,17 +5,14 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:user_app/const/colors.dart';
 
 Widget btn1(
-  route,
+  onpress,
   text,
 ) =>
-    Container(
+    SizedBox(
       height: Get.height * 0.06,
       width: Get.width * 0.8,
       child: ElevatedButton(
-        child: Text(text),
-        onPressed: () {
-          Get.to(route);
-        },
+        onPressed: onpress,
         style: ElevatedButton.styleFrom(
           elevation: 0,
           primary: btnColor,
@@ -24,5 +21,6 @@ Widget btn1(
               fontSize: Get.width * 0.055,
               fontWeight: FontWeight.bold),
         ),
+        child: Text(text),
       ),
     );

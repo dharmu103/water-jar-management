@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:user_app/const/colors.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:user_app/screens/login_screen.dart';
 import 'package:user_app/widgets/buttons.dart';
 
 class OnboardingScreen extends StatelessWidget {
@@ -47,7 +48,7 @@ class OnboardingScreen extends StatelessWidget {
               ),
             ),
             const Spacer(),
-            btn1('route', 'Get Started'),
+            btn1(() => Get.to(const LoginScreen()), 'Get Started'),
             const Spacer(),
           ],
         ),
