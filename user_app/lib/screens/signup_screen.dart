@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:user_app/const/colors.dart';
+import 'package:user_app/getx/auth_controller.dart';
 import 'package:user_app/screens/otp_screen.dart';
+import 'package:user_app/widgets/textfields.dart';
 
 import '../widgets/buttons.dart';
 
@@ -11,6 +13,7 @@ class SignupScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final _controller = Get.put(AuthController());
     return Scaffold(
       body: Container(
         height: Get.height,
@@ -27,7 +30,33 @@ class SignupScreen extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               )),
           SizedBox(height: Get.height * 0.1),
-          const Spacer(),
+          textfield(
+            const Icon(Icons.person),
+            'Full Name',
+            _controller.fullnameTextController,
+            (v) {},
+          ),
+          SizedBox(
+            height: Get.height * 0.06,
+          ),
+          textfield(
+            const Icon(Icons.person),
+            'Full Name',
+            _controller.addressTextController,
+            (v) {},
+          ),
+          SizedBox(
+            height: Get.height * 0.06,
+          ),
+          textfield(
+            const Icon(Icons.person),
+            'Full Name',
+            _controller.cityTextController,
+            (v) {},
+          ),
+          SizedBox(
+            height: Get.height * 0.06,
+          ),
           Row(
             children: [
               const SizedBox(
@@ -39,6 +68,12 @@ class SignupScreen extends StatelessWidget {
           ),
           const SizedBox(height: 5),
           btn1(() => Get.to(const OtpScreen()), 'Signup'),
+          const SizedBox(height: 5),
+          TextButton(
+              onPressed: () {
+                _controller.logout();
+              },
+              child: Text('logout and login with another account')),
           SizedBox(height: Get.height * 0.05),
         ]),
       ),

@@ -11,6 +11,7 @@ import '../screens/signup_screen.dart';
 import '../widgets/toast.dart';
 
 class AuthController extends GetxController {
+  
   var phoneFormKey = GlobalKey<FormState>();
   var signupFormKey = GlobalKey<FormState>();
 
@@ -18,8 +19,8 @@ class AuthController extends GetxController {
   TextEditingController phoneTextController = TextEditingController();
 
   TextEditingController fullnameTextController = TextEditingController();
-  TextEditingController emailTextController = TextEditingController();
-  TextEditingController refercodeTextController = TextEditingController();
+  TextEditingController addressTextController = TextEditingController();
+
   TextEditingController cityTextController = TextEditingController();
   TextEditingController otpTextController = TextEditingController();
 
@@ -119,14 +120,8 @@ class AuthController extends GetxController {
           .doc(FirebaseAuth.instance.currentUser?.phoneNumber.toString())
           .set({
             'name': fullnameTextController.text.toString(),
-            'email': emailTextController.text.toString(),
+            'address': addressTextController.text.toString(),
             'city': cityTextController.text.toString(),
-            'refercode': '+91${refercodeTextController.text.toString()}',
-            'paid': '0',
-            'pendings': '50',
-            'accountnumber': '',
-            'accountholdername': '',
-            'ifsccode': ''
           })
           .then((value) =>
               _auth.currentUser!.updateDisplayName(fullnameTextController.text))

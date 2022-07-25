@@ -67,3 +67,34 @@ Widget otpfield(context) => SizedBox(
         ),
       ),
     );
+Widget textfield(icon, hint, txtcontroller, validator) => SizedBox(
+      height: Get.height * 0.08,
+      width: Get.width * 0.8,
+      child: TextFormField(
+        controller: txtcontroller,
+        validator: validator,
+        style: GoogleFonts.poppins(
+            fontWeight: FontWeight.bold,
+            textStyle: const TextStyle(letterSpacing: 1.5)),
+        decoration: InputDecoration(
+          prefixIconConstraints:
+              const BoxConstraints(minWidth: 90, maxWidth: 100),
+          focusColor: btnColor,
+          hoverColor: btnColor,
+          prefixIcon: icon,
+          filled: true,
+          fillColor: Colors.white,
+          hintText: hint,
+          hintStyle: GoogleFonts.poppins(
+              fontWeight: FontWeight.bold,
+              textStyle: const TextStyle(letterSpacing: 1.5)),
+          errorBorder: const OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.red),
+          ),
+          border: OutlineInputBorder(
+            borderSide: BorderSide.none,
+            borderRadius: BorderRadius.circular(10),
+          ),
+        ),
+      ),
+    );
